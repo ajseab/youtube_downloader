@@ -50,5 +50,4 @@ Contributions are welcome! If you have any suggestions, bug reports, or feature 
 
 ## License
 
-This project is licensed under the BSD-4-Clause (LICENSE).
-```
+This project is licensed under the BSD-4-Clause [LICENSE].

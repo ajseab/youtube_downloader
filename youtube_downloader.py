@@ -11,24 +11,24 @@ from pytube import YouTube
 def main():
     # Create a download path variable
     # Must replace with your path
-    DOWNLOAD_PATH = "/Users/avery/Downloads"
+    download_path = "/Users/avery/Downloads"
 
     # Needed to verofy certificates otherwise you will recieve a urlopen error
     ssl._create_default_https_context = ssl._create_stdlib_context
 
     # Records a list of arguments from the terminal
-    SYS_ARGUMENTS = sys.argv
+    sys_args = sys.argv
 
     # Gets the Youtube link from argument when running youtube_downloader.py
     # Example: ~ python3 youtube_downloader.py https://youtube.com/video
     # "https://youtube.com/video" is recorded in yt_link
-    YT_LINK = str(SYS_ARGUMENTS[1])
+    yt_link = str(sys_args[1])
 
     # Creates a yt object from YouTube with the provided link
     # Uses oauth and allows oauth cache
     try:
         yt = YouTube(
-        YT_LINK,
+        yt_link,
         use_oauth = True,
         allow_oauth_cache = True
         )
@@ -36,17 +36,17 @@ def main():
         print("Connection Error")
 
     # Set the file name of the video
-    FILE_NAME = yt.title.replace(" ", "_")
-    FILE_NAME = FILE_NAME.lower()
-    FILE_NAME += ".mp4"
+    file_name = yt.title.replace(" ", "_")
+    file_name = file_name.lower()
+    file_name += ".mp4"
 
     try:
         stream = yt.streams.get_highest_resolution() # Gets the highest resolution mp4 available for download
-        stream.download(DOWNLOAD_PATH, FILE_NAME) # Downloads the video
+        stream.download(download_path, file_name) # Downloads the video
     except:
         print("Some Error.")
 
-    print(f"Downloaded {FILE_NAME} to {DOWNLOAD_PATH}")
+    print(f"Downloaded {file_name} to {download_path}")
     
 if __name__ == "__main__":
     main()
